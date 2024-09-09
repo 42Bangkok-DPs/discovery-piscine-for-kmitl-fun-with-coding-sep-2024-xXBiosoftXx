@@ -1,1 +1,1 @@
-ls -p | grep -v '^\.|^\.\.$' | paste -sd ','
+ls | grep -v '^\.|^\.\.$' | paste -sd ','
