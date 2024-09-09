@@ -2,6 +2,7 @@
 
 if [ "$#" - eq 0 ]; then
   echo "No arguments supplied"
+  exit
 fi
 
 if [ "$#" -lt 1 ]; then
