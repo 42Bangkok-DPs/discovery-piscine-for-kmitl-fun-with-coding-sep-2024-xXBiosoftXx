@@ -1,0 +1,17 @@
+table, tr, th {
+    border: 1px solid black;
+    border-collapse: collapse; 
+}
+
+table{
+    table-layout: fixed;
+    height: 100px; 
+    width: 100%;
+}
+
+.t1{
+    background-color: yellow;
+}
+.t2{
+    background-color: pink;
+}
