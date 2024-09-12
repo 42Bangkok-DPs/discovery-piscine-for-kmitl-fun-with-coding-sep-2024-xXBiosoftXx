@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To Do List</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f4f4;
+        }
+
+        #to_do_list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            width: 300px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        li {
+            background-color: #fee89f;
+            margin: 10px 0;
+            padding: 10px;
+            border: 2px solid rgb(6, 80, 6);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        li button {
+            background-color: #ff6464;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="to_do_list">
+        <button id="new">NEW</button>
+        <ul id="list"></ul>
+    </div>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+     $(document).ready(function () {
+            load_list();
+            $('#new').click(function () {
+                var new_task = prompt('Please enter your task:');
+
+                if (new_task !== null && new_task.trim() !== '') {
+                    var li = $('<li>' + new_task + ' <button class="remove-btn">X</button></li>');
+                    $('#list').prepend(li);
+                    save_list();
+                }
+            });
+
+            $(document).on('click', '.remove-btn', function () {
+                $(this).parent().remove();
+                save_list();
+            });
+
+            function save_list() {
+                var list_html = $('#list').html();
+                setCookie('list', list_html, 7);
+            }
+
+            function load_list() {
+                var saved_list = getCookie('list');
+                if (saved_list) {
+                    $('#list').html(saved_list);
+                }
+            }
+
+            function setCookie(name, value, days) {
+                var expires = '';
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = '; expires=' + date.toUTCString();
+                }
+                document.cookie = name + '=' + (value || '') + expires + '; path=/';
+            }
+
+            function getCookie(name) {
+                var nameEQ = name + '=';
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+
+            function eraseCookie(name) {
+                document.cookie = name + '=; Max-Age=-99999999;';
+            }
+        });
+</script>
