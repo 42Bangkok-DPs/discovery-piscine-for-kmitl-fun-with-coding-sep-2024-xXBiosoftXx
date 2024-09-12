@@ -8,7 +8,7 @@
 }
 
 .dropdown-toggle:hover .dropdown-toggle:focus {
-    background-color: #2980B9;
+    background-color: rgb(208, 22, 22);
 }
 
 .dropdown{
