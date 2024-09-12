@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Calculator</title>
     <style>
@@ -59,11 +60,15 @@
                 default:
                     break;
             }
-            if (!isNaN(result)) {
+            if (result < 0 || !(result % 1 === 0)) {
                 if (isFinite(result)) {
-                    alert('result is ' + result);
-                    console.log('result: ' + result);
+                    alert('error :(');
+                    console.log('error:(');
                 }
+            }
+            else if (!isNaN(result)) {
+                alert('result is ' + result);
+                console.log('result: ' + result);
             } else {
                 alert('error :(');
                 console.log('error:(');
@@ -78,7 +83,7 @@
         alert('please use me. . .');
     }
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#calculateBtn').click(calculate);
         setInterval(alert_30_sec, 30000);
     });
