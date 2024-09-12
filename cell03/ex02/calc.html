@@ -68,13 +68,16 @@
                 default:
                     break;
             }
-            if (!isNaN(result)) {
+            if (result < 0 || !(result % 1 === 0)) {
                 if (isFinite(result)) {
-                    alert('result is ' + result);
-                    console.log('result is' + result);
+                    alert('error :(');
+                    console.log('error:(');
                 }
             }
-            else {
+            else if (!isNaN(result)) {
+                alert('result is ' + result);
+                console.log('result: ' + result);
+            } else {
                 alert('error :(');
                 console.log('error:(');
             }
